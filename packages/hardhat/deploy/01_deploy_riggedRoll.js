@@ -19,7 +19,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
 
   const riggedRoll = await ethers.getContract("RiggedRoll", deployer);
 
-  const ownershipTransaction = await riggedRoll.transferOwnership("0xd4cCA1FF496de9D83773C6a760Bd5445103B9DbC");
+  const ownershipTransaction = await riggedRoll.transferOwnership("0x1c0AcCc24e1549125b5b3c14D999D3a496Afbdb1");
 
 
 };
