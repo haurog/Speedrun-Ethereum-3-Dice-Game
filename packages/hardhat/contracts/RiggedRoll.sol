@@ -9,6 +9,8 @@ contract RiggedRoll is Ownable {
 
     DiceGame public diceGame;
 
+    event Received(address, uint);
+
     constructor(address payable diceGameAddress) {
         diceGame = DiceGame(diceGameAddress);
     }
@@ -18,7 +20,8 @@ contract RiggedRoll is Ownable {
 
     //Add riggedRoll() function to predict the randomness in the DiceGame contract and only roll when it's going to be a winner
 
+    receive() external payable {
+        emit Received(msg.sender, msg.value);
+    }
 
-    //Add receive() function so contract can receive Eth
-    
 }
