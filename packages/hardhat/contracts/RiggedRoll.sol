@@ -16,7 +16,10 @@ contract RiggedRoll is Ownable {
         diceGame = DiceGame(diceGameAddress);
     }
 
-    //Add withdraw function to transfer ether from the rigged contract to an address
+    function withdraw(address payable _addr, uint256 _amount) public onlyOwner {
+        require(_amount <= address(this).balance, "Not enough funds to withdraw requested amount.");
+        _addr.transfer(_amount);
+    }
 
     function riggedRoll() public {
         require(address(this).balance >= 0.002 ether, "Not enough funds in the RiggedRoll contract.");
