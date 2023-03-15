@@ -36,7 +36,7 @@ contract RiggedRoll is Ownable {
             diceGame.rollTheDice{value: 0.002 ether}();
             emit Rolled(expectedResult);
         } else {
-            emit NotRolled(expectedResult);
+            revert();
         }
     }
 
