@@ -19,7 +19,7 @@ contract RiggedRoll is Ownable {
     //Add withdraw function to transfer ether from the rigged contract to an address
 
     function riggedRoll() public {
-        require(address(this).balance >= 0.002 ether);
+        require(address(this).balance >= 0.002 ether, "Not enough funds in the RiggedRoll contract.");
 
         bytes32 prevHash = blockhash(block.number - 1);
         bytes32 hash = keccak256(
