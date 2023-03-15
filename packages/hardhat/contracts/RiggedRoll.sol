@@ -19,6 +19,8 @@ contract RiggedRoll is Ownable {
     //Add withdraw function to transfer ether from the rigged contract to an address
 
     function riggedRoll() public {
+        require(address(this).balance >= 0.002 ether);
+
         bytes32 prevHash = blockhash(block.number - 1);
         bytes32 hash = keccak256(
             abi.encodePacked(prevHash, address(diceGame), diceGame.nonce())
@@ -26,9 +28,6 @@ contract RiggedRoll is Ownable {
         uint256 expectedResult = uint256(hash) % 16;
 
         console.log("Expected Result: ", expectedResult);
-        // console.log("address: ", address(diceGame));
-        // console.log("nonce: ", diceGame.nonce());
-        // console.log("hash: ", uint256(hash));
 
         if (expectedResult <= 2) {
             diceGame.rollTheDice{value: 0.002 ether}();
